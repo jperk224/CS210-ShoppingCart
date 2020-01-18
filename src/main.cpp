@@ -10,6 +10,7 @@ int main() {
 	const int NUMBER_OF_ITEMS = 2;							// Number of items to prompt user for
 	vector<ItemToPurchase> shoppingList;					// Vector to hold items
 	string itemName;
+	string itemDescription;
 	int itemPrice;
 	int itemQuantity;
 	int totalCost = 0;										// Summation of all item prices
@@ -27,6 +28,10 @@ int main() {
 		getline(cin, itemName);
 		// Set input to itemName
 		itemToPurchase.SetName(itemName);
+		cout << "Enter the item description:" << endl;
+		getline(cin, itemDescription);
+		// Set input to itemDescription
+		itemToPurchase.SetDescription(itemDescription);
 		cout << "Enter the item price:" << endl;
 		cin >> itemPrice;
 		// Set input to itemPrice
@@ -48,9 +53,9 @@ int main() {
 	// Print the items purchased and their total cost
 	cout << "TOTAL COST" << endl;
 	for (unsigned int i = 0; i < shoppingList.size(); ++i) {
-		cout << shoppingList.at(i).GetName() << " " << shoppingList.at(i).GetQuantity() <<
-				" @ $" << shoppingList.at(i).GetPrice() << " = $" <<
-				(shoppingList.at(i).GetPrice() * shoppingList.at(i).GetQuantity()) << endl;
+		shoppingList.at(i).PrintItemCost();
+		cout << endl;
+		shoppingList.at(i).PrintItemDescription();
 	}
 
 	cout << endl;
