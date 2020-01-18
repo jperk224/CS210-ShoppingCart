@@ -63,14 +63,14 @@ void ShoppingCart::ModifyItem(ItemToPurchase itemToPurchase) {
 }
 
 int ShoppingCart::GetNumItemsInCart() {
-	int numItems = 0;				// Local variable to store cart count
-	// FIXME: Add logic
-	return numItems;
+	return cartItems.size();
 }
 
 int ShoppingCart::GetCostOfCart() {
-	int cartCost = 0;				// Local variable to store cart cost
-	// FIXME: Add logic
+	int cartCost = 0;							// Local variable to store cart cost
+	for (int i = 0; i < cartItems.size(); ++i) {
+		cartCost += (cartItems.at(i).GetPrice() * cartItems.at(i).GetQuantity());
+	}
 	return cartCost;
 }
 
