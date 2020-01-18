@@ -17,18 +17,24 @@ using namespace std;
 class ItemToPurchase {
 	public:
 		ItemToPurchase();					// Default Constructor
+		// Parameterized constructor
+		ItemToPurchase(string itemName, string itemDescription, int itemPrice = 0, int itemQuantity = 0);
 		void SetName(string itemName);
 		void SetPrice(int itemPrice);
 		void SetQuantity(int itemQuantity);
+		void SetDescription(string itemDescription);
 		string GetName();
 		int GetPrice();
 		int GetQuantity();
+		string GetDescription();
+		void PrintItemCost();
+		void PrintItemDescription();
 	private:
 		string itemName;
 		int itemPrice;						// Double is better for prices, but int
 											// seems sufficient for this lab
 		int itemQuantity;
-
+		string itemDescription;
 };
 
 #endif /* ITEMTOPURCHASE_H_ */

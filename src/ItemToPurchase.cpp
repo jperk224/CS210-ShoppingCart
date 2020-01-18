@@ -28,6 +28,18 @@ ItemToPurchase::ItemToPurchase() {
 	this->itemName = "none";
 	this->itemPrice = 0;
 	this->itemQuantity = 0;
+	this->itemDescription = "none";
+}
+
+// Overloaded Parameterized Constructor
+// Default parameters should only be defined in the function declaration
+// The compiler will throw errors if defaults are defined in the function definition
+// https://stackoverflow.com/questions/2545720/error-default-argument-given-for-parameter-1
+ItemToPurchase::ItemToPurchase(string itemName, string itemDescription, int itemPrice /* default 0 */, int itemQuantity /* default 0 */) {
+	this->itemName = itemName;
+	this->itemDescription = itemDescription;
+	this->itemPrice = itemPrice;
+	this->itemQuantity = itemQuantity;
 }
 
 // Setters
@@ -46,6 +58,11 @@ void ItemToPurchase::SetQuantity(int itemQuantity) {
 	return;
 }
 
+void ItemToPurchase::SetDescription(string itemDescription) {
+	this->itemDescription = itemDescription;
+	return;
+}
+
 // Getters
 string ItemToPurchase::GetName() {
 	return this->itemName;
@@ -57,4 +74,20 @@ int ItemToPurchase::GetPrice() {
 
 int ItemToPurchase::GetQuantity() {
 	return this->itemQuantity;
+}
+
+string ItemToPurchase::GetDescription() {
+	return this->itemDescription;
+}
+
+// PrintItemCost() - Outputs the item name followed by the quantity, price, and subtotal
+void ItemToPurchase::PrintItemCost() {
+	cout << GetName() << " " << GetQuantity() <<
+	" @ $" << GetPrice() << " = $" <<
+	(GetPrice() * GetQuantity()) << endl;
+}
+
+// PrintItemDescription() - Outputs the item name and description
+void ItemToPurchase::PrintItemDescription() {
+	cout << GetName() << ": " << GetDescription() << endl;
 }
