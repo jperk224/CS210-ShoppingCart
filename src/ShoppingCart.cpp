@@ -113,11 +113,12 @@ void ShoppingCart::PrintTotal() {
 		cout << "SHOPPING CART IS EMPTY";
 	}
 	else {
-		cout << "Number of items: " << GetNumItemsInCart();
+		cout << "Number of items: " << GetNumItemsInCart() << endl;
 		cout << endl;
 		for (unsigned int i = 0; i < cartItems.size(); ++i) {
 			cartItems.at(i).PrintItemCost();
 		}
+		cout << endl;
 		cout << endl;
 		cout << "Total: $" << GetCostOfCart();
 	}
@@ -125,6 +126,12 @@ void ShoppingCart::PrintTotal() {
 }
 
 void ShoppingCart::PrintDescriptions() {
-	// FIXME: Add logic
+	cout << GetCustomerName() << "'s Shopping Cart - " << GetDate() << endl;
+	cout << endl;
+	cout << "Item Descriptions" << endl;
+	for (unsigned int i = 0; i < cartItems.size(); ++i) {
+		cartItems.at(i).PrintItemDescription();
+	}
+	cout << endl;
 	return;
 }
