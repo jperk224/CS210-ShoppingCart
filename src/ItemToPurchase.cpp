@@ -29,6 +29,7 @@ ItemToPurchase::ItemToPurchase() {
 	this->itemPrice = 0;
 	this->itemQuantity = 0;
 	this->itemDescription = "none";
+	return;
 }
 
 // Overloaded Parameterized Constructor
@@ -40,6 +41,7 @@ ItemToPurchase::ItemToPurchase(string itemName, string itemDescription, int item
 	this->itemDescription = itemDescription;
 	this->itemPrice = itemPrice;
 	this->itemQuantity = itemQuantity;
+	return;
 }
 
 // Setters

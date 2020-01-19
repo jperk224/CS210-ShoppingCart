@@ -5,6 +5,7 @@
  */
 
 #include <iostream>
+#include <cctype>				// Needed for char to lower conversion
 using namespace std;
 
 #include "ShoppingCart.h"
@@ -53,8 +54,40 @@ void ShoppingCart::AddItem(ItemToPurchase itemToPurchase) {
 }
 
 void ShoppingCart::RemoveItem(string itemName) {
-	// FIXME: Add RemoveItem logic
-	return;
+//	// convert entry to lower case to remove case sensitivity
+//	string lowerCaseItem = "";
+//	string lowerCaseCartItem;
+//	bool itemFound = false;
+//	vector<ItemToPurchase> copyCartItems;	// New vector to copy cart items for iteration
+//	char c;	// holds lower case character
+//
+//	// create copy vector
+//	for (unsigned int i = 0; i < cartItems.size(); ++i) {
+//		copyCartItems.push_back(cartItems.at(i));
+//	}
+//
+//	for (unsigned int i = 0; i < itemName.size(); ++i) {
+//		c = itemName[i];
+//		lowerCaseItem += tolower(c);
+//	}
+//
+//	for (unsigned int i = 0; i < copyCartItems.size(); ++i) {
+//		string cartItemName = copyCartItems.at(i).GetName();
+//		lowerCaseCartItem = "";
+//		for (unsigned int j = 0; j < cartItemName.size(); ++i) {
+//			c = cartItemName[i];
+//			lowerCaseCartItem += tolower(c);
+//		}
+//		if(lowerCaseItem == lowerCaseCartItem) {
+//			itemFound = true;
+//			cartItems.erase(i);
+//			break;
+//		}
+//	}
+//
+//	if (!itemFound) {
+//		cout << "Item not found in cart. Nothing removed." << endl;
+//	}
 }
 
 void ShoppingCart::ModifyItem(ItemToPurchase itemToPurchase) {
@@ -68,14 +101,26 @@ int ShoppingCart::GetNumItemsInCart() {
 
 int ShoppingCart::GetCostOfCart() {
 	int cartCost = 0;							// Local variable to store cart cost
-	for (int i = 0; i < cartItems.size(); ++i) {
+	for (unsigned int i = 0; i < cartItems.size(); ++i) {
 		cartCost += (cartItems.at(i).GetPrice() * cartItems.at(i).GetQuantity());
 	}
 	return cartCost;
 }
 
 void ShoppingCart::PrintTotal() {
-	// FIXME: Add logic
+	cout << GetCustomerName() << "'s Shopping Cart - " << GetDate() << endl;
+	if(GetNumItemsInCart() < 1) {
+		cout << "SHOPPING CART IS EMPTY";
+	}
+	else {
+		cout << "Number of items: " << GetNumItemsInCart();
+		cout << endl;
+		for (unsigned int i = 0; i < cartItems.size(); ++i) {
+			cartItems.at(i).PrintItemCost();
+		}
+		cout << endl;
+		cout << "Total: $" << GetCostOfCart();
+	}
 	return;
 }
 
