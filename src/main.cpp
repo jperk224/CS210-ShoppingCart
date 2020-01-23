@@ -13,7 +13,7 @@ using namespace std;
 // and outputs a menu of options to manipulate the shopping cart.
 // Each option is represented by a single character
 
-void PrintMenu(/*Add Shopping Cart Parameter*/) {
+void PrintMenu(ShoppingCart shoppingCart) {
 	string displayMenu = 	"MENU\na - Add item to cart\nd - Remove item from cart\n"
 							"c - Change item quantity\ni - Output items' descriptions\n"
 							"o - Output shopping cart\nq - Quit\n\nChoose an option: ";
@@ -45,7 +45,8 @@ void PrintMenu(/*Add Shopping Cart Parameter*/) {
 					cout << "FIXME: Output items' descriptions" << endl;
 				}
 				else if (userInput == 'o') {
-					cout << "FIXME: Output shopping cart" << endl;
+					cout << "OUTPUT SHOPPING CART" << endl;
+					shoppingCart.PrintTotal();
 				}
 				else {
 					continue;
@@ -57,15 +58,20 @@ void PrintMenu(/*Add Shopping Cart Parameter*/) {
 			}
 		} while(!validEntry);
 	}
-
-	cout << "QUIT";
-
 	return;
 }
 
 int main() {
-
-	PrintMenu();
+	string customerName;
+	string dateToday;
+	cout << "Enter customer's name: " << endl;
+	getline(cin, customerName);
+	cout << "Enter today's date: " << endl;
+	getline(cin, dateToday);
+	cout << "Customer name: " << customerName << endl;
+	cout << "Today's date: " << dateToday << endl << endl;
+	ShoppingCart shoppingCart(customerName, dateToday);
+	PrintMenu(shoppingCart);
 	return 0;
 }
 
