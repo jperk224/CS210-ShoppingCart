@@ -54,44 +54,23 @@ void ShoppingCart::AddItem(ItemToPurchase itemToPurchase) {
 }
 
 void ShoppingCart::RemoveItem(string itemName) {
-//	// convert entry to lower case to remove case sensitivity
-//	string lowerCaseItem = "";
-//	string lowerCaseCartItem;
-//	bool itemFound = false;
-//	vector<ItemToPurchase> copyCartItems;	// New vector to copy cart items for iteration
-//	char c;	// holds lower case character
-//
-//	// create copy vector
-//	for (unsigned int i = 0; i < cartItems.size(); ++i) {
-//		copyCartItems.push_back(cartItems.at(i));
-//	}
-//
-//	for (unsigned int i = 0; i < itemName.size(); ++i) {
-//		c = itemName[i];
-//		lowerCaseItem += tolower(c);
-//	}
-//
-//	for (unsigned int i = 0; i < copyCartItems.size(); ++i) {
-//		string cartItemName = copyCartItems.at(i).GetName();
-//		lowerCaseCartItem = "";
-//		for (unsigned int j = 0; j < cartItemName.size(); ++i) {
-//			c = cartItemName[i];
-//			lowerCaseCartItem += tolower(c);
-//		}
-//		if(lowerCaseItem == lowerCaseCartItem) {
-//			itemFound = true;
-//			cartItems.erase(i);
-//			break;
-//		}
-//	}
-//
-//	if (!itemFound) {
-//		cout << "Item not found in cart. Nothing removed." << endl;
-//	}
+	// Case sensitivity removal via conversion to lower is beyond
+	// the scope of this lab exercise
+	for (unsigned int i = 0; i < cartItems.size(); ++i) {
+		string cartItemName = cartItems.at(i).GetName();
+		if (itemName == cartItemName) {
+			cout << "FIXME: Match Found";
+			break;
+		}
+		else {
+			cout << "Item not found in cart. Nothing removed.";
+		}
+	}
 }
 
 void ShoppingCart::ModifyItem(ItemToPurchase itemToPurchase) {
 	// FIXME: Add ModifyItem Logic
+	cout << "FIXME: Add Modify Item Logic";
 	return;
 }
 

@@ -1,67 +1,52 @@
 #include <iostream>
 #include <vector>
-
+#include <stdexcept>	// Library needed to generate runtim_error objects
+						// for exception handling
+#include <string>		// Includes the class definition for built-in
+						// string class
 using namespace std;
 
 #include "ItemToPurchase.h"
 #include "ShoppingCart.h"
 
+// Implement the PrintMenu() function. PrintMenu() has a ShoppingCart parameter
+// and outputs a menu of options to manipulate the shopping cart.
+// Each option is represented by a single character
+
+void PrintMenu(/*Add Shopping Cart Parameter*/) {
+	string displayMenu = 	"MENU\na - Add item to cart\nd - Remove item from cart\n"
+							"c - Change item quantity\ni - Output items' descriptions\n"
+							"o - Output shopping cart\nq - Quit\n\nChoose an option: ";
+	char userInput;
+	bool validEntry;		// flag to drive exception handling
+
+	while (userInput != 'q') {
+		do {
+			validEntry = true;
+			try {
+				cout << displayMenu;
+				cin >> userInput;
+				userInput = tolower(userInput);
+				if ((userInput != 'a') && (userInput != 'd') && (userInput != 'c')
+						&& (userInput != 'i') && (userInput != 'o') && (userInput != 'q')) {
+					throw runtime_error("Invalid selection.");
+				}
+			}
+			catch (runtime_error& excpt) {
+				cout << excpt.what();
+				validEntry = false;
+			}
+		} while(!validEntry);
+
+		cout << userInput;
+	}
+
+	return;
+}
+
 int main() {
 
-	const int NUMBER_OF_ITEMS = 2;							// Number of items to prompt user for
-	vector<ItemToPurchase> shoppingList;					// Vector to hold items
-	string itemName;
-	string itemDescription;
-	int itemPrice;
-	int itemQuantity;
-	int totalCost = 0;										// Summation of all item prices
-
-	// Exception handling is beyond the scope of this lab
-	// Capture the items purchased
-	for (int i = 0; i < NUMBER_OF_ITEMS; ++i) {
-		// Instantiate a new ItemToPurchase
-		// Default constructor will be called at initialization
-		ItemToPurchase itemToPurchase;
-		cout << "Item " << (i + 1) << endl;
-		cout << "Enter the item name:" << endl;
-		// getline() captures all remaining text on the current input line
-		// up to the next newline character, allowing for entry of whitespace
-		getline(cin, itemName);
-		// Set input to itemName
-		itemToPurchase.SetName(itemName);
-		cout << "Enter the item description:" << endl;
-		getline(cin, itemDescription);
-		// Set input to itemDescription
-		itemToPurchase.SetDescription(itemDescription);
-		cout << "Enter the item price:" << endl;
-		cin >> itemPrice;
-		// Set input to itemPrice
-		itemToPurchase.SetPrice(itemPrice);
-		cout << "Enter the item quantity:" << endl;
-		cin >> itemQuantity;
-		cout << endl;
-		// Set input to itemQuantity
-		itemToPurchase.SetQuantity(itemQuantity);
-		// add the item to the ShoppingList vector
-		shoppingList.push_back(itemToPurchase);
-		// Add the item's price to the total cost
-		totalCost += (itemToPurchase.GetPrice() * itemToPurchase.GetQuantity());
-		// Before prompting for the second item, call cin.ignore()
-		// to allow the user to input a new string
-		cin.ignore();
-	}
-
-	// Print the items purchased and their total cost
-	cout << "TOTAL COST" << endl;
-	for (unsigned int i = 0; i < shoppingList.size(); ++i) {
-		shoppingList.at(i).PrintItemCost();
-		cout << endl;
-		shoppingList.at(i).PrintItemDescription();
-	}
-
-	cout << endl;
-	cout << "Total: $" << totalCost << endl;
-
+	PrintMenu();
 	return 0;
 }
 
