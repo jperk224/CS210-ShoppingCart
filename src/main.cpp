@@ -31,15 +31,34 @@ void PrintMenu(/*Add Shopping Cart Parameter*/) {
 						&& (userInput != 'i') && (userInput != 'o') && (userInput != 'q')) {
 					throw runtime_error("Invalid selection.");
 				}
+
+				if (userInput == 'a') {
+					cout << "FIXME: add item to cart" << endl;
+				}
+				else if (userInput == 'd') {
+					cout << "FIXME: Remove item from cart." << endl;
+				}
+				else if (userInput == 'c') {
+					cout << "FIXME: Change item quantity" << endl;
+				}
+				else if (userInput == 'i') {
+					cout << "FIXME: Output items' descriptions" << endl;
+				}
+				else if (userInput == 'o') {
+					cout << "FIXME: Output shopping cart" << endl;
+				}
+				else {
+					continue;
+				}
 			}
 			catch (runtime_error& excpt) {
-				cout << excpt.what();
+				cout << excpt.what() << endl;
 				validEntry = false;
 			}
 		} while(!validEntry);
-
-		cout << userInput;
 	}
+
+	cout << "QUIT";
 
 	return;
 }
