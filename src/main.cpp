@@ -54,7 +54,10 @@ void PrintMenu(ShoppingCart shoppingCart) {
 					shoppingCart.AddItem(itemName, itemDescription, itemPrice, itemQuantity);
 				}
 				else if (userInput == 'd') {
-					cout << "FIXME: Remove item from cart." << endl;
+					cout << "REMOVE ITEM FROM CART" << endl;
+					cout << "Enter name of item to remove:" << endl;
+					getline(cin, itemName);
+					shoppingCart.RemoveItem(itemName);
 				}
 				else if (userInput == 'c') {
 					cout << "FIXME: Change item quantity" << endl;

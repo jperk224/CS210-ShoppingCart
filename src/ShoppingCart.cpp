@@ -59,15 +59,18 @@ void ShoppingCart::AddItem(string itemName, string itemDescription, int itemPric
 void ShoppingCart::RemoveItem(string itemName) {
 	// Case sensitivity removal via conversion to lower is beyond
 	// the scope of this lab exercise
+	bool itemFound = false;
 	for (unsigned int i = 0; i < cartItems.size(); ++i) {
 		string cartItemName = cartItems.at(i).GetName();
 		if (itemName == cartItemName) {
-			cout << "FIXME: Match Found";
-			break;
+			// Remove the item by index
+			cartItems.erase(cartItems.begin() + i);
+			// https://stackoverflow.com/questions/875103/how-do-i-erase-an-element-from-stdvector-by-index
+			itemFound = true;
 		}
-		else {
-			cout << "Item not found in cart. Nothing removed.";
-		}
+	}
+	if (!itemFound) {
+		cout << "Item not found in cart. Nothing removed." << endl;
 	}
 }
 
