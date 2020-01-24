@@ -48,9 +48,7 @@ string ShoppingCart::GetDate() {
 }
 
 // Add an item to cartItems vector
-void ShoppingCart::AddItem(string itemName, string itemDescription, int itemPrice, int itemQuantity) {
-	// instantiate a new item to add to the cart
-	ItemToPurchase itemToPurchase(itemName, itemDescription, itemPrice, itemQuantity);
+void ShoppingCart::AddItem(ItemToPurchase itemToPurchase) {
 	// add the item to the cartItems vector
 	cartItems.push_back(itemToPurchase);
 	return;

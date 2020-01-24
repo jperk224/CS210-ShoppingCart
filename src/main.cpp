@@ -51,7 +51,8 @@ void PrintMenu(ShoppingCart shoppingCart) {
 					cout << "Enter the item quantity:" << endl;
 					cin >> itemQuantity;
 					cout << endl;
-					shoppingCart.AddItem(itemName, itemDescription, itemPrice, itemQuantity);
+					ItemToPurchase itemToPurchase(itemName, itemDescription, itemPrice, itemQuantity);
+					shoppingCart.AddItem(itemToPurchase);
 				}
 				else if (userInput == 'd') {
 					cout << "REMOVE ITEM FROM CART" << endl;
