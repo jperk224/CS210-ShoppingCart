@@ -19,6 +19,11 @@ void PrintMenu(ShoppingCart shoppingCart) {
 							"o - Output shopping cart\nq - Quit\n\nChoose an option: ";
 	char userInput;
 	bool validEntry;		// flag to drive exception handling
+	// Variables to store individual item fields
+	string itemName;
+	string itemDescription;
+	int itemPrice;
+	int itemQuantity;
 
 	while (userInput != 'q') {
 		do {
@@ -26,6 +31,7 @@ void PrintMenu(ShoppingCart shoppingCart) {
 			try {
 				cout << displayMenu;
 				cin >> userInput;
+				cin.ignore();	// allow for carriage return
 				userInput = tolower(userInput);
 				if ((userInput != 'a') && (userInput != 'd') && (userInput != 'c')
 						&& (userInput != 'i') && (userInput != 'o') && (userInput != 'q')) {
@@ -33,7 +39,19 @@ void PrintMenu(ShoppingCart shoppingCart) {
 				}
 
 				if (userInput == 'a') {
-					cout << "FIXME: add item to cart" << endl;
+					cout << "ADD ITEM TO CART" << endl;
+					cout << "Enter the item name:" << endl;
+					// getline() captures all remaining text on the current input line
+					// up to the next newline character, allowing for entry of whitespace
+					getline(cin, itemName);
+					cout << "Enter the item description:" << endl;
+					getline(cin, itemDescription);
+					cout << "Enter the item price:" << endl;
+					cin >> itemPrice;
+					cout << "Enter the item quantity:" << endl;
+					cin >> itemQuantity;
+					cout << endl;
+					shoppingCart.AddItem(itemName, itemDescription, itemPrice, itemQuantity);
 				}
 				else if (userInput == 'd') {
 					cout << "FIXME: Remove item from cart." << endl;
@@ -42,7 +60,8 @@ void PrintMenu(ShoppingCart shoppingCart) {
 					cout << "FIXME: Change item quantity" << endl;
 				}
 				else if (userInput == 'i') {
-					cout << "FIXME: Output items' descriptions" << endl;
+					cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
+					shoppingCart.PrintDescriptions();
 				}
 				else if (userInput == 'o') {
 					cout << "OUTPUT SHOPPING CART" << endl;

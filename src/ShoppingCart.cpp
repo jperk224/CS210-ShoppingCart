@@ -48,7 +48,10 @@ string ShoppingCart::GetDate() {
 }
 
 // Add an item to cartItems vector
-void ShoppingCart::AddItem(ItemToPurchase itemToPurchase) {
+void ShoppingCart::AddItem(string itemName, string itemDescription, int itemPrice, int itemQuantity) {
+	// instantiate a new item to add to the cart
+	ItemToPurchase itemToPurchase(itemName, itemDescription, itemPrice, itemQuantity);
+	// add the item to the cartItems vector
 	cartItems.push_back(itemToPurchase);
 	return;
 }
@@ -99,7 +102,7 @@ void ShoppingCart::PrintTotal() {
 		}
 		cout << endl;
 		cout << endl;
-		cout << "Total: $" << GetCostOfCart();
+		cout << "Total: $" << GetCostOfCart() << endl;
 	}
 	return;
 }
