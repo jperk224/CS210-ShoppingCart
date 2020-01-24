@@ -105,11 +105,11 @@ int ShoppingCart::GetCostOfCart() {
 
 void ShoppingCart::PrintTotal() {
 	cout << GetCustomerName() << "'s Shopping Cart - " << GetDate() << endl;
+	cout << "Number of items: " << GetNumItemsInCart() << endl;
 	if(GetNumItemsInCart() < 1) {
 		cout << "SHOPPING CART IS EMPTY" << endl;
 	}
 	else {
-		cout << "Number of items: " << GetNumItemsInCart() << endl;
 		cout << endl;
 		for (unsigned int i = 0; i < cartItems.size(); ++i) {
 			cartItems.at(i).PrintItemCost();

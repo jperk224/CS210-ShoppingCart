@@ -16,7 +16,7 @@ using namespace std;
 void PrintMenu(ShoppingCart shoppingCart) {
 	string displayMenu = 	"MENU\na - Add item to cart\nd - Remove item from cart\n"
 							"c - Change item quantity\ni - Output items' descriptions\n"
-							"o - Output shopping cart\nq - Quit\n\nChoose an option: ";
+							"o - Output shopping cart\nq - Quit";
 	char userInput;
 	bool validEntry;		// flag to drive exception handling
 	// Variables to store individual item fields
@@ -26,10 +26,11 @@ void PrintMenu(ShoppingCart shoppingCart) {
 	int itemQuantity;
 
 	while (userInput != 'q') {
+		cout << displayMenu << endl << endl;
 		do {
 			validEntry = true;
 			try {
-				cout << displayMenu;
+				cout << "Choose an option:" << endl;
 				cin >> userInput;
 				cin.ignore();	// allow for carriage return
 				userInput = tolower(userInput);
@@ -90,7 +91,7 @@ void PrintMenu(ShoppingCart shoppingCart) {
 				}
 			}
 			catch (runtime_error& excpt) {
-				cout << excpt.what() << endl;
+				// cout << excpt.what() << endl;
 				validEntry = false;
 			}
 		} while(!validEntry);
@@ -101,15 +102,14 @@ void PrintMenu(ShoppingCart shoppingCart) {
 int main() {
 	string customerName;
 	string dateToday;
-	cout << "Enter customer's name: " << endl;
+	cout << "Enter customer's name:" << endl;
 	getline(cin, customerName);
-	cout << "Enter today's date: " << endl;
+	cout << "Enter today's date:" << endl;
 	getline(cin, dateToday);
+	cout << endl;
 	cout << "Customer name: " << customerName << endl;
 	cout << "Today's date: " << dateToday << endl << endl;
 	ShoppingCart shoppingCart(customerName, dateToday);
 	PrintMenu(shoppingCart);
 	return 0;
 }
-
-
