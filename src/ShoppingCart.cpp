@@ -70,11 +70,24 @@ void ShoppingCart::RemoveItem(string itemName) {
 	if (!itemFound) {
 		cout << "Item not found in cart. Nothing removed." << endl;
 	}
+	return;
 }
 
 void ShoppingCart::ModifyItem(ItemToPurchase itemToPurchase) {
-	// FIXME: Add ModifyItem Logic
-	cout << "FIXME: Add Modify Item Logic";
+	// Case sensitivity removal via conversion to lower is beyond
+	// the scope of this lab exercise
+	bool itemFound = false;
+	string itemName = itemToPurchase.GetName();
+	for (unsigned int i = 0; i < cartItems.size(); ++i) {
+		string cartItemName = cartItems.at(i).GetName();
+		if (itemName == cartItemName) {
+			cartItems.at(1).SetQuantity(itemToPurchase.GetQuantity());
+			itemFound = true;
+		}
+	}
+	if (!itemFound) {
+		cout << "Item not found in cart. Nothing modified." << endl;
+	}
 	return;
 }
 

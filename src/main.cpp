@@ -61,7 +61,21 @@ void PrintMenu(ShoppingCart shoppingCart) {
 					shoppingCart.RemoveItem(itemName);
 				}
 				else if (userInput == 'c') {
-					cout << "FIXME: Change item quantity" << endl;
+					// Implement Change item quantity menu option.
+					// Make new ItemToPurchase object and use ItemToPurchase
+					// modifiers before using ModifyItem() function
+					// Capture user input, strings can be empty and quantities
+					// default to 0
+					cout << "CHANGE ITEM QUANTITY" << endl;
+					cout << "Enter the item name:" << endl;
+					getline(cin, itemName);
+					cout << "Enter the new quantity:" << endl;
+					cin >> itemQuantity;
+					cout << endl;
+					itemDescription = "";
+					itemPrice = 0;
+					ItemToPurchase itemToPurchase(itemName, itemDescription, itemPrice, itemQuantity);
+					shoppingCart.ModifyItem(itemToPurchase);
 				}
 				else if (userInput == 'i') {
 					cout << "OUTPUT ITEMS' DESCRIPTIONS" << endl;
